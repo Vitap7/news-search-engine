@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  
+<head>
+    <meta charset="UTF-8">
+    <title>Oggole-Search</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static',filename = 'logo1.ico') }}" type="image/x-ico">
+</head>
+
+<style type="text/css">
+        .logo{
+            position: absolute;
+            left:10px;
+            top:20px;
+            width:160px;
+            height:90px;
+        }
+        html,body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .page{
+            box-sizing: border-box;
+            min-height: 100%;
+            padding-bottom: 25px;
+        }
+        footer{
+            position:absolute;
+            width:100%;
+            height: 28px;
+            line-height: 28px;
+            margin-top:50px;
+            text-align: center;
+            background: #F0F0F0;
+            color: rgb(112, 112, 112);
+            font-family: Consolas;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        .numofresult{
+            height:20px;
+            color:#C2C2C2;
+        }
+        .url{
+            color:green;
+        }
+        .time{
+            color:#A0A0A0;
+        }
+        .title{
+            font-size:18px;
+            max-width: 650px; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        input:-webkit-autofill {
+            box-shadow: 0 0 0px 1000px white inset !important;
+        }
+        .container{
+            position:relative;
+            min-height:100%;
+            left:5px;
+        }
+        .text{
+            max-width: 680px; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .btn{
+            background:#4586F3;
+            border:none;
+            letter-spacing: 1px;
+        }
+        .searchtype{
+            height:20px;
+            width:350px;
+            font-size:14px;
+            font-weight: normal;
+            font-family: NSimSun;
+            letter-spacing: 1px;
+        }
+        .typesubmit{
+            font-family:Consolas;
+            font-color:#fff;
+            width:35px;
+            background:#4586F3;
+            border:none;
+        }
+        .radio{
+            vertical-align:middle;
+            letter-spacing: 1px;
+        }
+</style>
+
+<body ng-controller="ctrl">
+
+<!-- logo -->
+<div class="logoarea">
+    <a href="http://localhost:7777"><img src="{{ url_for('static', filename='logo3.png')}}" class="logo"/></a>
+</div>
+
+<div class="container">
+    <br>
+    <br>
+    <form class="form-inline" method="post" action="/">
+        <div class="form-group">
+            <input type="text" style="height: 40px; width: 360px;" class="form-control" ng-model="query"
+                   value="{{ value }}" name="query" id="query"/>
+        </div>
+        <input class="btn btn-small btn-success" role="button" type="submit" value="搜搜看" id="btn">
+    
+    <div class="searchtype">
+    <input type="radio" value="0" name="r_sel" id="r_sel1" {% if searchArr[0] %}checked="{{searchArr[0]}}"{% endif %}/><label for="r_sel1">相关度&nbsp;</label>
+    <input type="radio" value="1" name="r_sel" id="r_sel2" {% if searchArr[1] %}checked="{{searchArr[1]}}"{% endif %}/><label for="r_sel2">时间&nbsp;</label>
+    <input type="radio" value="2" name="r_sel" id="r_sel3" {% if searchArr[2] %}checked="{{searchArr[2]}}"{% endif %}/><label for="r_sel3">热度&nbsp;</label>
+    <input class="typesubmit" type="submit" value="OK" style="color:white"/>
+    </div>
+    </form>
+    <br>
+    <!--
+    
+    -->
+    <br>
+    <div class="numofresult">为您找到{{ length }}条结果</div>
+    <br>
+       
+    <div id="box">
+    {% for doc in docs %}
+    <p class="title"><a href="{{ doc[0] }}" target="_blank">{{ doc[3]|safe }}</a></p>
+    <p class="time">{{ doc[1] }}</p>
+    <p class="text">{{ doc[2] }}</p>
+    <p class="url">{{ doc[0] }}</p>
+    <br>
+    {% endfor %}
+    <nav aria-label="Page navigation" class="pull-left">
+        <ul class="pagination">
+           {{ html|safe }}
+        </ul>
+    </nav>
+    </div>
+</div>
+
+<footer>
+    CopyRight©️2020 LSN
+</footer>
+
+</body>
+</html>
