@@ -42,21 +42,18 @@ def search(query,searchtype):
 def highlight(docs, terms):
     # 使用deque，优化性能
     result = deque()
+    mongoClient = pymongo.MongoClient('127.0.0.1',27017)
+    db = mongoClient['myNewsDB']
 
     for doc in docs:
-        mongoClient = pymongo.MongoClient('127.0.0.1',27017)
-        db = mongoClient['myNewsDB']
         data = db['news_coll'].find_one({'No':doc[0]})
-
         title = data['title']
         for term in terms:
             title = title.replace(term, '<font color="red">{}</font>'.format(term))
         result.append((data['url'],data['time'],data['text'][0:66],title))
 
     result = list(result)
-    #print(result)
     return result
 
 if __name__ == "__main__":
-    #jieba.initialize()
     app.run(host='localhost', port=7777, debug=False, threaded=True)
