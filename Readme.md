@@ -2,9 +2,9 @@
 
 小型新闻搜索引擎
 
-![](D:\CS-2021-2022-2\searchEngine\index.png)
+<img src="https://github.com/Vitap7/news-search-engine/blob/main/img/index.png" width="900" height="520">
 
-![](D:\CS-2021-2022-2\searchEngine\example.png)
+<img src="https://github.com/Vitap7/news-search-engine/blob/main/img/example.png" width="900">
 
 ### 项目环境
 
