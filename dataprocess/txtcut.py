@@ -3,7 +3,7 @@ import jieba
 import pymongo
 
 # stopfilepath : 停用词txt文件路径
-stopfilepath = 'e:/jiebacut/stopwords.txt'
+stopfilepath = '../jiebacut/stopwords.txt'
 
 # 停用词转化为数组
 def stopwordslist(filepath):

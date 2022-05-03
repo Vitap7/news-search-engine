@@ -6,7 +6,7 @@ from math import log10
 from datetime import datetime, timedelta
 
 # stopfilepath : 停用词txt文件路径
-stopfilepath = 'e:/jiebacut/stopwords.txt'
+stopfilepath = '../jiebacut/stopwords.txt'
 
 st = {}
 
