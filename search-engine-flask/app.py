@@ -19,15 +19,9 @@ def main():
 @app.route("/search/<searchtype>/<query>", methods=['POST', 'GET'])
 
 def search(query,searchtype):
-
+    searcharr = [0,0,0]
+    searcharr[int(searchtype)] = 1
     docs,terms = search_fun(query,searchtype)
-
-    if int(searchtype)==0:
-        searcharr=[1,0,0]
-    if int(searchtype)==1:
-        searcharr=[0,1,0]
-    if int(searchtype)==2:
-        searcharr=[0,0,1]
 
     result = highlight(docs, terms)
 

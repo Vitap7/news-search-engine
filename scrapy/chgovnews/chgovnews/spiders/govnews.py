@@ -5,9 +5,7 @@
 from __future__ import absolute_import
 import scrapy
 from ..items import ChgovnewsItem
-from scrapy import selector
 import re
-from urllib.request import Request
 
 # scrapy crawl govnews
 
