@@ -1,4 +1,4 @@
-# news-search-engine
+# Oggole
 
 小型新闻搜索引擎
 
